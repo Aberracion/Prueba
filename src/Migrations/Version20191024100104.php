@@ -55,7 +55,9 @@ final class Version20191024100104 extends AbstractMigration
       for($i=0; $i<100; $i++){
         $numChar = random_int(1, 10);
         $name = $this->generateRandomString($numChar);
-        $this->addSql('INSERT INTO user (name,  id_role, id_group)  VALUES ("'.$name.'", '.random_int(1, 3).', '.random_int(1, 10).')');
+        $numChar2 = random_int(1, 10);
+        $password = $this->generateRandomString($numChar2);
+        $this->addSql('INSERT INTO user (name,  password, id_role, id_group)  VALUES ("'.$name.'", "'.$password.'", '.random_int(1, 3).', '.random_int(1, 10).')');
       }
 
     }
