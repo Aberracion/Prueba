@@ -36,9 +36,9 @@ final class Version20191024100104 extends AbstractMigration
     public function up(Schema $schema) : void
     {
 
-      $this->addSql('INSERT INTO role  VALUES (1,"Administrador Aplicación")');
-      $this->addSql('INSERT INTO role  VALUES (2,"Administrador Grupo")');
-      $this->addSql('INSERT INTO role  VALUES (3,"Usuario")');
+      $this->addSql('INSERT INTO role  VALUES (1,"Administrador Aplicación", "ROLE_ADMIN_APP")');
+      $this->addSql('INSERT INTO role  VALUES (2,"Administrador Grupo", "ROLE_ADMIN_GROUP")');
+      $this->addSql('INSERT INTO role  VALUES (3,"Usuario", "ROLE_USER")');
 
       for($i=0; $i<10; $i++){
         $numChar = random_int(1, 10);
@@ -57,7 +57,7 @@ final class Version20191024100104 extends AbstractMigration
         $name = $this->generateRandomString($numChar);
         $numChar2 = random_int(1, 10);
         $password = $this->generateRandomString($numChar2);
-        $this->addSql('INSERT INTO user (name,  password, id_role, id_group)  VALUES ("'.$name.'", "'.$password.'", '.random_int(1, 3).', '.random_int(1, 10).')');
+        $this->addSql('INSERT INTO user (username,  password, roles, id_group)  VALUES ("'.$name.'", "'.$password.'", '.random_int(1, 3).', '.random_int(1, 10).')');
       }
 
     }

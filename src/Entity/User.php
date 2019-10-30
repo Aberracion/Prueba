@@ -3,11 +3,17 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+
+use App\Entity\Role;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -19,60 +25,66 @@ class User
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private $Username;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $password;
+    private $Password;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $id_role;
+    private $Roles;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $id_group;
 
+    /**
+     * @ManyToOne(targetEntity="Role")
+     * @JoinColumn(name="roles", referencedColumnName="id")
+     */
+    private $CodeRole;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getUsername(): ?string
     {
-        return $this->name;
+        return $this->Username;
     }
 
-    public function setName(string $name): self
+    public function setUsername(string $Username): self
     {
-        $this->name = $name;
+        $this->Username = $Username;
 
         return $this;
     }
 
     public function getPassword(): ?string
     {
-        return $this->password;
+        return $this->Password;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword(?string $Password): self
     {
-        $this->password = $password;
+        $this->Password = $Password;
 
         return $this;
     }
 
-    public function getIdRole(): ?int
+    public function getRoles()
     {
-        return $this->id_role;
+        return array($this->CodeRole->getCode());
     }
 
-    public function setIdRole(?int $id_role): self
+    public function setRoles(?int $Roles): self
     {
-        $this->id_role = $id_role;
+        $this->Roles = $Roles;
 
         return $this;
     }
@@ -87,5 +99,16 @@ class User
         $this->id_group = $id_group;
 
         return $this;
+    }
+
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    public function eraseCredentials()
+    {
     }
 }

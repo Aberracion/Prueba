@@ -76,7 +76,7 @@ class ImportMediaCommand extends Command
             $io->note(sprintf('You passed an argument: %s', $id_user));
             $u = $entityManager->getRepository(User::class)->findOneBy([
                     'id' => $id_user,
-                    'password' => $password,
+                    'Password' => $password,
                 ]);
 
             if (!$u) {
@@ -101,8 +101,8 @@ class ImportMediaCommand extends Command
           $dotpos=strrpos($file,'.');
           $ext=substr($file,$dotpos);
           $fecha = date_create();
-          $new_file = './storage/'.$u->getName()."_".date_timestamp_get($fecha).$ext;
-          copy($file, $new_file);
+          $new_file = '/storage/'.$u->getUsername()."_".date_timestamp_get($fecha).$ext;
+          copy($file, './public'.$new_file);
 
 
 
@@ -110,6 +110,7 @@ class ImportMediaCommand extends Command
           $media->setPath($new_file);
           $media->setIdUser($id_user);
           $media->setIdEvent($id_event);
+          $media->setCreateAt($fecha);
 
           $entityManager->persist($media);
 

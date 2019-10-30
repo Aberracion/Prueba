@@ -24,12 +24,17 @@ class Media
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $id_user;
+    private $id_event;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $id_event;
+    private $id_user;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $create_at;
 
     public function getId(): ?int
     {
@@ -48,6 +53,18 @@ class Media
         return $this;
     }
 
+    public function getIdEvent(): ?int
+    {
+        return $this->id_event;
+    }
+
+    public function setIdEvent(?int $id_event): self
+    {
+        $this->id_event = $id_event;
+
+        return $this;
+    }
+
     public function getIdUser(): ?int
     {
         return $this->id_user;
@@ -60,14 +77,14 @@ class Media
         return $this;
     }
 
-    public function getIdEvent(): ?int
+    public function getCreateAt(): ?\DateTimeInterface
     {
-        return $this->id_event;
+        return $this->create_at;
     }
 
-    public function setIdEvent(?int $id_event): self
+    public function setCreateAt(?\DateTimeInterface $create_at): self
     {
-        $this->id_event = $id_event;
+        $this->create_at = $create_at;
 
         return $this;
     }

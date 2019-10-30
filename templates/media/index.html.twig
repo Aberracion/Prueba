@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<form method="post">
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as <b>{{ app.user.username }}</b>, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+    <table>
+      <tr>
+        <th>Evento</th>
+        <th>Fecha</th>
+        <th>Path</th>
+      </tr>
+      {% for media in medias %}
+          <tr>
+            <td>{{ media.idEvent }}</td>
+            <td>{{ media.createAt|date("d/m/Y H:i:s") }}</td>
+            <td><a href="{{ media.path }}">{{ media.path }}</a></td>
+          </tr>
+      {% endfor %}
+    </table>
+
+</form>
+{% endblock %}
