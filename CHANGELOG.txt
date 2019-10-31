@@ -1,0 +1,28 @@
+0.0.1	2019-10-23
+Initial commit
+Inicio proyecto symfony
+Creación de entidades
+
+0.0.2	2019-10-25
+Creación de un generador aleatorio
+Modificación de la entidad Role
+
+0.0.3	2019-10-27
+Creación de un comando para importar archivos
+Modificación de la entidad User
+Modificación en la migración
+
+0.0.4	2019-10-30
+Creación de la vista
+Creación de sistema de autenticación
+Primeras rutas
+Modificación del comando
+Modificación de las entidades Media, Role y User
+Modificación en la migración
+
+0.1.0 2019-10-31
+Restringir el acceso a los contenidos por User, Grupo y Role
+Crear los txt
+Controlar restricciones de acceso
+Terminar con las rutas
+

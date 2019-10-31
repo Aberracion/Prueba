@@ -1,0 +1,12 @@
+php bin/console doctrine:database:create
+composer install
+php bin/console doctrine:schema:create
+php bin/console doctrine:migrations:migrate
+
+Para importar ficheros:
+
+php bin/console importMedia {ficheroconpath} {id_event} {id_usuario} {password}
+
+
+
+
