@@ -1,6 +1,11 @@
 login:
     path: /login
     controller: App\Controller\SecurityController::login
+    methods: GET|POST
+home:
+    path: /
+    controller: App\Controller\MediaController::index
+    methods: GET|POST
 medias:
     path: /media
     controller: App\Controller\MediaController::index
